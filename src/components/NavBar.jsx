@@ -18,7 +18,7 @@ export default function NavBar() {
   };
 
   return (
-    <nav className="bg-white flex justify-between p-10 relative">
+    <nav className="h-screen bg-white flex justify-between p-10 relative">
       <ul>
         <p className="font-thin">Nexus Technologies</p>
       </ul>

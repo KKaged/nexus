@@ -3,6 +3,7 @@ import Loaded from "./components/Loaded";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import { motion } from "framer-motion";
+import LandAbout from "./components/LandAbout";
 
 function App() {
   const [animationComplete, setAnimationComplete] = useState(false);
@@ -17,20 +18,10 @@ function App() {
   return (
     <>
       <motion.div
-        className="font-medium text-orange-500 underline text-2xl underline-offset-8"
+        className="font-medium text-orange-500 underline text-2xl underline-offset-8 w-screen h-screen flex justify-center items-center bg-zinc-900 text-center"
         initial={{ opacity: 1 }}
         animate={{ y: "-125%" }}
         transition={{ duration: 1, delay: 2 }}
-        style={{
-          backgroundColor: "rgb(25, 23, 23)",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          textAlign: "center",
-          overflow: "hidden",
-          width: "100vw",
-          height: "100vh",
-        }}
         onAnimationComplete={() => setAnimationComplete(true)} // Set animationComplete to true when the first animation is complete
       >
         <Loaded />
@@ -47,6 +38,7 @@ function App() {
           transition={{ duration: 1 }}
         >
           <NavBar />
+          <LandAbout />
         </motion.div>
       )}
     </>
