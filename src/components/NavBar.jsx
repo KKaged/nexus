@@ -6,7 +6,15 @@ export default function NavBar() {
 
   const variants = {
     open: { y: -65 },
-    closed: { y: -200 },
+    closed: { y: -300 },
+  };
+  const itemVariants = {
+    open: {
+      opacity: 1,
+      y: 0,
+      transition: { type: "spring", stiffness: 300, damping: 24 },
+    },
+    closed: { opacity: 0, y: 20, transition: { duration: 0.2 } },
   };
 
   return (
@@ -20,7 +28,7 @@ export default function NavBar() {
           onClick={() => setIsOpen(!isOpen)}
           className="font-thin"
         >
-          {isOpen ? "close" : "menu"}
+          Menu
         </motion.button>
         <AnimatePresence>
           {isOpen && (
@@ -30,19 +38,41 @@ export default function NavBar() {
               exit="closed"
               variants={variants}
               transition={{ duration: 0.5 }}
-              className="absolute bg-orange-500 w-screen left-0 right-0 p-10 z-10 flex flex-row justify-between items-center"
+              className="absolute bg-orange-500 w-screen left-0 right-0 p-10 z-10 flex flex-row justify-between items-start"
             >
-              <div className="flex flex-row">
-                <li>Home</li>
-                <li>About</li>
-                <li>Services</li>
-                <li>Contact</li>
-              </div>
+              <p className="font-thin">Nexus Technologies</p>
+              <motion.ul
+                variants={{
+                  open: {
+                    clipPath: "inset(0% 0% 0% 0% round 10px)",
+                    transition: {
+                      type: "spring",
+                      bounce: 0,
+                      duration: 0.7,
+                      delayChildren: 0.3,
+                      staggerChildren: 0.05,
+                    },
+                  },
+                  closed: {
+                    transition: {
+                      type: "spring",
+                      bounce: 0,
+                      duration: 0.3,
+                    },
+                  },
+                }}
+                style={{ pointerEvents: isOpen ? "auto" : "none" }}
+              >
+                <motion.li variants={itemVariants}>Home</motion.li>
+                <motion.li variants={itemVariants}>About</motion.li>
+                <motion.li variants={itemVariants}>Services</motion.li>
+                <motion.li variants={itemVariants}>Contact</motion.li>
+              </motion.ul>
               <motion.button
                 className="font-thin"
                 onClick={() => setIsOpen(!isOpen)}
               >
-                close
+                Close
               </motion.button>
             </motion.ul>
           )}
